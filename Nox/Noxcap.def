@@ -1,0 +1,3 @@
+LIBRARY NOXCAP
+EXPORTS
+	hook_swap_buffers @1
