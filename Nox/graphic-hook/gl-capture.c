@@ -32,44 +32,7 @@ static struct func_hook wgl_delete_context;
 
 static bool darkest_dungeon_fix = false;
 
-struct gl_data {
-	HDC hdc;
-	uint32_t base_cx;
-	uint32_t base_cy;
-	uint32_t cx;
-	uint32_t cy;
-	DXGI_FORMAT format;
-	GLuint fbo;
-	bool using_shtex;
-	bool using_scale;
-	bool shmem_fallback;
 
-	union {
-		/* shared texture */
-		struct {
-			struct shtex_data *shtex_info;
-			ID3D11Device *d3d11_device;
-			ID3D11DeviceContext *d3d11_context;
-			ID3D11Texture2D *d3d11_tex;
-			IDXGISwapChain *dxgi_swap;
-			HANDLE gl_device;
-			HANDLE gl_dxobj;
-			HANDLE handle;
-			HWND hwnd;
-			GLuint texture;
-		};
-		/* shared memory */
-		struct {
-			struct shmem_data *shmem_info;
-			int cur_tex;
-			int copy_wait;
-			GLuint pbos[NUM_BUFFERS];
-			GLuint textures[NUM_BUFFERS];
-			bool texture_ready[NUM_BUFFERS];
-			bool texture_mapped[NUM_BUFFERS];
-		};
-	};
-};
 
 static HMODULE gl = NULL;
 static bool nv_capture_available = false;
